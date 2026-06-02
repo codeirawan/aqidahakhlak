@@ -1,0 +1,899 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Aqidah Akhlak MI 🌙</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&family=Fredoka+One&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #fffbeb;
+  --bg2: #fef3c7;
+  --card: #ffffff;
+  --border: #d9f99d;
+  --green: #059669;
+  --green-light: #d1fae5;
+  --green-dark: #065f46;
+  --gold: #d97706;
+  --gold-light: #fef3c7;
+  --gold-dark: #92400e;
+  --teal: #0891b2;
+  --teal-light: #e0f2fe;
+  --rose: #e11d48;
+  --rose-light: #ffe4e6;
+  --text: #1c1917;
+  --text2: #44403c;
+  --muted: #78716c;
+  --correct: #059669;
+  --correct-bg: #d1fae5;
+  --wrong: #dc2626;
+  --wrong-bg: #fee2e2;
+  --shadow: 0 4px 24px rgba(5,150,105,.1);
+  --shadow-lg: 0 8px 40px rgba(5,150,105,.16);
+}
+* { margin:0; padding:0; box-sizing:border-box; }
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'Poppins', sans-serif;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+body::before {
+  content:'';
+  position:fixed; inset:0; pointer-events:none; z-index:0;
+  background:
+    radial-gradient(circle at 12% 18%, rgba(5,150,105,.07) 0%, transparent 40%),
+    radial-gradient(circle at 88% 10%, rgba(217,119,6,.07) 0%, transparent 35%),
+    radial-gradient(circle at 70% 88%, rgba(8,145,178,.05) 0%, transparent 38%),
+    radial-gradient(circle at 5% 88%, rgba(5,150,105,.05) 0%, transparent 32%);
+}
+
+/* gold-green top stripe */
+.top-stripe {
+  position:fixed; top:0; left:0; right:0; height:5px; z-index:100;
+  background: linear-gradient(90deg, #059669, #d97706, #059669, #d97706);
+  background-size:400% 100%;
+  animation: stripeMove 6s linear infinite;
+}
+@keyframes stripeMove { from{background-position:0%} to{background-position:400%} }
+
+.container {
+  max-width:740px; margin:0 auto;
+  padding:32px 16px 56px;
+  position:relative; z-index:1;
+}
+
+/* ── HEADER ── */
+header { text-align:center; margin-bottom:24px; padding-top:14px; }
+.header-crescent {
+  display:inline-flex; align-items:center; gap:10px;
+  background:linear-gradient(135deg, var(--green-light), var(--gold-light));
+  border:2px solid #a7f3d0;
+  border-radius:50px; padding:9px 22px; margin-bottom:12px;
+  box-shadow:0 2px 14px rgba(5,150,105,.18);
+}
+.header-crescent span { font-size:1.3rem; }
+.header-label {
+  font-size:.7rem; font-weight:700; letter-spacing:1.5px;
+  text-transform:uppercase; color:var(--green-dark);
+}
+header h1 {
+  font-family:'Fredoka One',cursive; font-size:2.8rem; line-height:1.1;
+  background:linear-gradient(135deg, #065f46, #d97706, #059669);
+  -webkit-background-clip:text; -webkit-text-fill-color:transparent;
+  background-clip:text; margin-bottom:4px;
+}
+header p { color:var(--text2); font-size:.86rem; font-weight:500; }
+
+/* ── TABS ── */
+.tabs {
+  display:flex; gap:6px; justify-content:center;
+  margin-bottom:20px; flex-wrap:wrap;
+}
+.tab {
+  padding:9px 22px; border-radius:50px;
+  border:2px solid #a7f3d0; background:var(--card);
+  color:var(--green-dark); cursor:pointer;
+  font-family:'Poppins',sans-serif; font-size:.83rem; font-weight:700;
+  transition:all .18s;
+}
+.tab:hover { border-color:var(--green); }
+.tab.active {
+  background:linear-gradient(135deg, var(--green), var(--green-dark));
+  border-color:var(--green); color:#fff;
+  box-shadow:0 4px 14px rgba(5,150,105,.35);
+}
+
+/* ── SCOREBAR ── */
+.scorebar {
+  display:grid; grid-template-columns:repeat(4,1fr);
+  gap:8px; margin-bottom:18px;
+}
+.sb-pill {
+  background:var(--card); border:2px solid #a7f3d0;
+  border-radius:16px; padding:10px 8px; text-align:center;
+  box-shadow:var(--shadow);
+}
+.sb-val { font-family:'Fredoka One',cursive; font-size:1.6rem; line-height:1; }
+.sb-lbl { font-size:.6rem; color:var(--muted); font-weight:700; letter-spacing:.8px; text-transform:uppercase; margin-top:2px; }
+.sb-val.green { color:var(--correct); }
+.sb-val.red { color:var(--wrong); }
+.sb-val.gold { color:var(--gold); }
+.sb-val.teal { color:var(--teal); }
+
+/* ── TOPIK ── */
+.topik-wrap {
+  display:flex; gap:5px; justify-content:center;
+  margin-bottom:14px; flex-wrap:wrap;
+}
+.topik-btn {
+  padding:6px 13px; border-radius:30px;
+  border:2px solid #d6d3d1; background:var(--card);
+  color:var(--text2); cursor:pointer;
+  font-family:'Poppins',sans-serif; font-size:.73rem; font-weight:700;
+  transition:all .18s;
+}
+.topik-btn:hover { border-color:var(--gold); color:var(--gold-dark); }
+.topik-btn.active {
+  border-color:var(--gold); color:var(--gold-dark);
+  background:var(--gold-light);
+}
+
+/* ── PROGRESS ── */
+.progress-label {
+  display:flex; justify-content:space-between;
+  font-size:.7rem; color:var(--muted); font-weight:600; margin-bottom:6px;
+}
+.progress-wrap {
+  background:#e7e5e4; border-radius:99px;
+  height:8px; margin-bottom:18px; overflow:hidden;
+}
+.progress-fill {
+  height:100%;
+  background:linear-gradient(90deg, var(--green), var(--gold));
+  border-radius:99px; transition:width .4s ease;
+}
+
+/* ── QUESTION CARD ── */
+.q-card {
+  background:var(--card);
+  border:2px solid #a7f3d0;
+  border-radius:24px; padding:26px 22px;
+  margin-bottom:14px; box-shadow:var(--shadow);
+  animation:fadeSlide .3s ease;
+  position:relative; overflow:hidden;
+}
+.q-card::after {
+  content:'';
+  position:absolute; bottom:0; left:0; right:0; height:4px;
+  background:linear-gradient(90deg, var(--green), var(--gold));
+}
+@keyframes fadeSlide { from{opacity:0;transform:translateY(14px)} to{opacity:1;transform:translateY(0)} }
+
+.q-meta {
+  display:flex; align-items:center; gap:6px;
+  margin-bottom:14px; flex-wrap:wrap;
+}
+.q-badge {
+  background:var(--green-light); color:var(--green-dark);
+  font-size:.67rem; font-weight:700; letter-spacing:1px; text-transform:uppercase;
+  padding:4px 12px; border-radius:20px; border:1px solid #6ee7b7;
+}
+.q-topik {
+  font-size:.68rem; color:var(--gold-dark); font-weight:700;
+  background:var(--gold-light); padding:4px 10px; border-radius:20px;
+  border:1px solid #fcd34d;
+}
+.q-diff {
+  font-size:.65rem; font-weight:700; padding:4px 10px; border-radius:20px; margin-left:auto;
+}
+.diff-mudah { background:#d1fae5; color:#065f46; }
+.diff-sedang { background:#fef3c7; color:#92400e; }
+.diff-sulit  { background:#fee2e2; color:#991b1b; }
+
+.q-emoji {
+  font-size:2.6rem; display:block; text-align:center;
+  margin-bottom:10px; animation:pulse 2.8s ease-in-out infinite;
+}
+@keyframes pulse { 0%,100%{transform:scale(1)} 50%{transform:scale(1.08)} }
+
+.q-ctx {
+  background:var(--teal-light); border-left:4px solid var(--teal);
+  border-radius:0 14px 14px 0; padding:11px 14px;
+  font-size:.85rem; color:#0c4a6e; line-height:1.7;
+  margin-bottom:14px; font-style:italic;
+}
+
+.q-text {
+  font-family:'Poppins',sans-serif; font-size:1.08rem; font-weight:700;
+  color:var(--text); line-height:1.55; text-align:center;
+  margin-bottom:10px;
+}
+
+/* ── OPTIONS ── */
+.options {
+  display:grid; grid-template-columns:1fr 1fr;
+  gap:9px; margin-bottom:14px;
+}
+.option {
+  background:var(--bg); border:2px solid #e7e5e4;
+  border-radius:14px; padding:12px 14px;
+  cursor:pointer; text-align:left;
+  font-family:'Poppins',sans-serif; font-size:.88rem; font-weight:600;
+  color:var(--text); transition:all .16s;
+  display:flex; align-items:center; gap:10px;
+}
+.option:hover:not(.disabled) {
+  border-color:var(--green); background:var(--green-light);
+  transform:translateY(-2px); box-shadow:0 4px 12px rgba(5,150,105,.18);
+}
+.opt-letter {
+  width:30px; height:30px; border-radius:50%; flex-shrink:0;
+  background:#e7e5e4; color:var(--text2);
+  display:flex; align-items:center; justify-content:center;
+  font-size:.75rem; font-weight:800; transition:all .16s;
+}
+.option:hover:not(.disabled) .opt-letter { background:var(--green); color:#fff; }
+.option.correct { border-color:var(--correct); background:var(--correct-bg); }
+.option.correct .opt-letter { background:var(--correct); color:#fff; }
+.option.wrong { border-color:var(--wrong); background:var(--wrong-bg); }
+.option.wrong .opt-letter { background:var(--wrong); color:#fff; }
+.option.disabled { cursor:not-allowed; opacity:.75; }
+
+/* ── FEEDBACK ── */
+.feedback {
+  text-align:center; padding:11px 14px; border-radius:12px;
+  font-size:.88rem; font-weight:700; margin-bottom:10px;
+  opacity:0; display:none;
+}
+.feedback.show { opacity:1; display:block; }
+.feedback.correct { background:var(--correct-bg); color:var(--correct); border:1.5px solid #6ee7b7; }
+.feedback.wrong   { background:var(--wrong-bg); color:var(--wrong); border:1.5px solid #fca5a5; }
+
+.pembahasan {
+  background:var(--gold-light); border:1.5px solid #fcd34d;
+  border-radius:12px; padding:10px 14px; margin-bottom:12px;
+  font-size:.81rem; color:#78350f; line-height:1.65; display:none;
+}
+.pembahasan.show { display:block; }
+
+/* ── NAV ROW ── */
+.nav-row { display:flex; gap:8px; justify-content:center; flex-wrap:wrap; }
+.btn {
+  padding:10px 22px; border-radius:12px;
+  border:2px solid #a7f3d0; background:var(--card);
+  color:var(--green-dark); cursor:pointer;
+  font-family:'Poppins',sans-serif; font-size:.83rem; font-weight:700;
+  transition:all .16s;
+}
+.btn:hover { border-color:var(--green); }
+.btn.primary {
+  background:linear-gradient(135deg, var(--green), #047857);
+  border-color:var(--green); color:#fff;
+  box-shadow:0 4px 14px rgba(5,150,105,.35);
+}
+.btn.gold { border-color:var(--gold); color:var(--gold-dark); }
+.btn.gold:hover { background:var(--gold-light); }
+
+/* ── RESULTS ── */
+.results {
+  background:var(--card); border:2px solid #a7f3d0;
+  border-radius:28px; padding:40px 24px; text-align:center;
+  box-shadow:var(--shadow-lg); animation:fadeSlide .4s ease;
+}
+.result-icon { font-size:4.5rem; display:block; margin-bottom:6px; animation:pulse 2s ease-in-out infinite; }
+.result-score {
+  font-family:'Fredoka One',cursive; font-size:5rem; line-height:1;
+  background:linear-gradient(135deg, var(--green), var(--gold));
+  -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text;
+}
+.result-grade { font-family:'Fredoka One',cursive; font-size:1.5rem; color:var(--gold); margin:6px 0; }
+.result-desc { color:var(--text2); font-size:.86rem; margin-bottom:22px; }
+.result-breakdown {
+  display:flex; gap:10px; justify-content:center; margin-bottom:26px; flex-wrap:wrap;
+}
+.rb-item {
+  background:var(--green-light); border:2px solid #a7f3d0;
+  border-radius:16px; padding:12px 22px;
+}
+.rb-val { font-family:'Fredoka One',cursive; font-size:1.8rem; }
+
+/* ── MATERI ── */
+.materi-card {
+  background:var(--card); border:2px solid #a7f3d0;
+  border-radius:20px; padding:20px; margin-bottom:12px;
+  box-shadow:var(--shadow); overflow:hidden; position:relative;
+}
+.materi-card h3 {
+  font-family:'Poppins',sans-serif; font-size:1rem; font-weight:800;
+  color:var(--green-dark); margin-bottom:10px;
+  display:flex; align-items:center; gap:8px;
+  border-bottom:2px solid var(--green-light); padding-bottom:8px;
+}
+.materi-card p { color:var(--text2); font-size:.83rem; line-height:1.75; margin-bottom:8px; }
+.materi-tag {
+  display:inline-block; font-size:.68rem; font-weight:700;
+  padding:3px 10px; border-radius:20px; margin:2px;
+}
+.tag-g { background:var(--green-light); color:var(--green-dark); border:1px solid #6ee7b7; }
+.tag-a { background:var(--gold-light); color:var(--gold-dark); border:1px solid #fcd34d; }
+.tag-t { background:var(--teal-light); color:#0c4a6e; border:1px solid #7dd3fc; }
+.tabel {
+  width:100%; border-collapse:collapse; font-size:.8rem; margin-top:8px;
+}
+.tabel th {
+  background:var(--green-light); color:var(--green-dark);
+  padding:7px 10px; text-align:left; font-weight:700;
+}
+.tabel td { padding:6px 10px; border-bottom:1px solid var(--green-light); color:var(--text2); }
+.tabel tr:last-child td { border-bottom:none; }
+
+/* ── TOAST ── */
+.toast {
+  position:fixed; top:20px; right:16px; z-index:999;
+  background:linear-gradient(135deg, var(--green), var(--gold));
+  color:#fff; font-weight:700; padding:10px 20px;
+  border-radius:16px; font-size:.83rem;
+  opacity:0; pointer-events:none; transition:opacity .3s;
+  box-shadow:0 4px 20px rgba(5,150,105,.4);
+}
+.toast.show { opacity:1; }
+
+@media(max-width:500px) {
+  header h1 { font-size:2.1rem; }
+  .q-text { font-size:.95rem; }
+  .options { grid-template-columns:1fr; }
+  .result-score { font-size:3.8rem; }
+  .scorebar { grid-template-columns:repeat(2,1fr); }
+}
+</style>
+</head>
+<body>
+<div class="top-stripe"></div>
+<div class="toast" id="toast"></div>
+<div class="container">
+
+  <header>
+    <div class="header-crescent">
+      <span>🌙</span>
+      <span class="header-label">MI Kelas 1 — Akhir Tahun</span>
+      <span>⭐</span>
+    </div>
+    <h1>Aqidah Akhlak</h1>
+    <p>Latihan Soal MI • 50 Soal Pilihan Ganda</p>
+  </header>
+
+  <div class="tabs">
+    <button class="tab active" onclick="switchTab('latihan')">📝 Latihan</button>
+    <button class="tab" onclick="switchTab('materi')">📖 Materi</button>
+  </div>
+
+  <!-- LATIHAN -->
+  <div id="tab-latihan">
+    <div class="scorebar">
+      <div class="sb-pill">
+        <div class="sb-val green" id="sc-benar">0</div>
+        <div class="sb-lbl">Benar</div>
+      </div>
+      <div class="sb-pill">
+        <div class="sb-val red" id="sc-salah">0</div>
+        <div class="sb-lbl">Salah</div>
+      </div>
+      <div class="sb-pill">
+        <div class="sb-val gold" id="sc-streak">0🔥</div>
+        <div class="sb-lbl">Streak</div>
+      </div>
+      <div class="sb-pill">
+        <div class="sb-val teal" id="sc-no">1/50</div>
+        <div class="sb-lbl">Soal</div>
+      </div>
+    </div>
+
+    <div class="topik-wrap">
+      <button class="topik-btn active" onclick="setTopik('semua',this)">📚 Semua</button>
+      <button class="topik-btn" onclick="setTopik('iman',this)">🕌 Rukun Iman</button>
+      <button class="topik-btn" onclick="setTopik('malaikat',this)">👼 Malaikat</button>
+      <button class="topik-btn" onclick="setTopik('asma',this)">🌟 Asmaul Husna</button>
+      <button class="topik-btn" onclick="setTopik('akhlak',this)">💎 Akhlak</button>
+    </div>
+
+    <div class="progress-label">
+      <span id="prog-label">Soal 1 dari 50</span>
+      <span id="prog-pct">2%</span>
+    </div>
+    <div class="progress-wrap">
+      <div class="progress-fill" id="progressBar" style="width:2%"></div>
+    </div>
+
+    <div id="soal-area"></div>
+  </div>
+
+  <!-- MATERI -->
+  <div id="tab-materi" style="display:none">
+    <div id="materi-area"></div>
+  </div>
+
+</div>
+<script>
+/* ══════════════════════════════════════════════
+   BANK SOAL — 50 SOAL AQIDAH AKHLAK MI KELAS 1
+══════════════════════════════════════════════ */
+const SOAL = [
+
+  /* ─── RUKUN IMAN (8 soal) ─── */
+  {em:'🕌', topik:'iman', diff:'mudah',
+   q:'Jumlah rukun iman ada ...',
+   opts:['4','5','6','7'], ans:2,
+   p:'Rukun iman ada 6: iman kepada Allah, malaikat, kitab, rasul, hari akhir, dan qada & qadar.'},
+
+  {em:'☝️', topik:'iman', diff:'mudah',
+   q:'Rukun iman yang pertama adalah ...',
+   opts:['Iman kepada malaikat','Iman kepada Allah','Iman kepada rasul','Iman kepada kitab'], ans:1,
+   p:'Rukun iman yang pertama adalah iman kepada Allah Swt., yaitu meyakini bahwa Allah itu ada dan Esa.'},
+
+  {em:'👼', topik:'iman', diff:'mudah',
+   q:'Iman kepada malaikat adalah rukun iman yang ke ...',
+   opts:['Pertama','Kedua','Ketiga','Keempat'], ans:1,
+   p:'Iman kepada malaikat merupakan rukun iman yang kedua. Malaikat adalah makhluk Allah yang selalu taat.'},
+
+  {em:'📖', topik:'iman', diff:'mudah',
+   q:'Iman kepada kitab-kitab Allah adalah rukun iman yang ke ...',
+   opts:['Kedua','Ketiga','Keempat','Kelima'], ans:1,
+   p:'Iman kepada kitab Allah adalah rukun iman ketiga. Kitab suci umat Islam adalah Al-Qur\'an.'},
+
+  {em:'🤲', topik:'iman', diff:'mudah',
+   q:'Iman kepada rasul adalah rukun iman yang ke ...',
+   opts:['Ketiga','Keempat','Kelima','Keenam'], ans:1,
+   p:'Iman kepada rasul adalah rukun iman keempat. Rasul terakhir adalah Nabi Muhammad Saw.'},
+
+  {em:'⏳', topik:'iman', diff:'mudah',
+   q:'Iman kepada hari akhir adalah rukun iman yang ke ...',
+   opts:['Keempat','Kelima','Keenam','Ketujuh'], ans:1,
+   p:'Iman kepada hari akhir (hari kiamat) adalah rukun iman kelima. Setiap yang bernyawa pasti akan mati.'},
+
+  {em:'✨', topik:'iman', diff:'mudah',
+   q:'Iman kepada qada dan qadar adalah rukun iman yang ke ...',
+   opts:['Keempat','Kelima','Keenam','Ketujuh'], ans:2,
+   p:'Iman kepada qada dan qadar (takdir Allah) adalah rukun iman keenam, yaitu meyakini bahwa segala sesuatu terjadi atas kehendak Allah.'},
+
+  {em:'🌍', topik:'iman', diff:'sedang',
+   q:'Meyakini bahwa alam dunia akan berakhir dan berganti alam akhirat adalah wujud ...',
+   opts:['Rukun iman keempat','Rukun iman kelima','Rukun iman keenam','Rukun iman ketiga'], ans:1,
+   p:'Meyakini adanya hari kiamat termasuk rukun iman kelima (iman kepada hari akhir).'},
+
+  /* ─── MALAIKAT ALLAH (10 soal) ─── */
+  {em:'👼', topik:'malaikat', diff:'mudah',
+   q:'Jumlah malaikat yang wajib kita ketahui ada ...',
+   opts:['6','8','10','12'], ans:2,
+   p:'Malaikat yang wajib kita ketahui ada 10 malaikat beserta tugasnya masing-masing.'},
+
+  {em:'📜', topik:'malaikat', diff:'mudah',
+   q:'Malaikat Jibril bertugas ...',
+   opts:['Membagi rezeki','Menyampaikan wahyu','Mencabut nyawa','Meniup sangkakala'], ans:1,
+   p:'Malaikat Jibril bertugas menyampaikan wahyu (firman Allah) kepada para nabi dan rasul.'},
+
+  {em:'🍞', topik:'malaikat', diff:'mudah',
+   q:'Malaikat Mikail bertugas ...',
+   opts:['Menyampaikan wahyu','Mencabut nyawa','Membagi rezeki','Menjaga surga'], ans:2,
+   p:'Malaikat Mikail bertugas membagi rezeki kepada seluruh makhluk Allah di bumi.'},
+
+  {em:'💨', topik:'malaikat', diff:'mudah',
+   q:'Malaikat Izrail bertugas ...',
+   opts:['Membagi rezeki','Meniup sangkakala','Mencabut nyawa','Mencatat amal baik'], ans:2,
+   p:'Malaikat Izrail atau Malaikat Maut bertugas mencabut nyawa semua makhluk hidup atas perintah Allah.'},
+
+  {em:'📯', topik:'malaikat', diff:'mudah',
+   q:'Malaikat Israfil bertugas ...',
+   opts:['Mencabut nyawa','Meniup sangkakala','Membagi rezeki','Menjaga neraka'], ans:1,
+   p:'Malaikat Israfil bertugas meniup sangkakala (terompet) sebagai tanda tibanya hari kiamat.'},
+
+  {em:'📝', topik:'malaikat', diff:'mudah',
+   q:'Malaikat Raqib bertugas ...',
+   opts:['Mencatat amal buruk','Mencatat amal baik','Menanya di kubur','Menjaga surga'], ans:1,
+   p:'Malaikat Raqib bertugas mencatat semua amal baik manusia selama hidupnya.'},
+
+  {em:'📝', topik:'malaikat', diff:'mudah',
+   q:'Malaikat Atid bertugas ...',
+   opts:['Mencatat amal baik','Menjaga neraka','Mencatat amal buruk','Membagi rezeki'], ans:2,
+   p:'Malaikat Atid bertugas mencatat semua amal buruk manusia selama hidupnya.'},
+
+  {em:'⚰️', topik:'malaikat', diff:'sedang',
+   q:'Malaikat Munkar dan Nakir bertugas ...',
+   opts:['Menjaga surga','Menjaga neraka','Bertanya kepada manusia di alam kubur','Mencatat amal baik'], ans:2,
+   p:'Malaikat Munkar dan Nakir bertugas menanya manusia di alam kubur tentang Tuhan, agama, dan nabi mereka.'},
+
+  {em:'🌸', topik:'malaikat', diff:'sedang',
+   q:'Malaikat Ridwan bertugas ...',
+   opts:['Menjaga neraka','Mencabut nyawa','Mencatat amal baik','Menjaga surga'], ans:3,
+   p:'Malaikat Ridwan bertugas menjaga surga dan menyambut orang-orang beriman yang masuk surga.'},
+
+  {em:'🔥', topik:'malaikat', diff:'sedang',
+   q:'Malaikat Malik bertugas ...',
+   opts:['Menjaga surga','Menjaga neraka','Membagi rezeki','Meniup sangkakala'], ans:1,
+   p:'Malaikat Malik bertugas menjaga neraka dan memimpin para penjaga neraka.'},
+
+  {em:'🍽️', topik:'malaikat', diff:'sedang',
+   q:'Malaikat Mikail merupakan pesuruh Allah. Perilaku teladan yang sesuai adalah ...',
+   opts:['Membaca Al-Qur\'an setiap hari','Berbagi makanan dan rezeki kepada sesama','Berlomba dalam kebaikan','Rajin belajar di sekolah'], ans:1,
+   p:'Karena Malaikat Mikail bertugas membagi rezeki, perilaku yang sesuai adalah berbagi makanan dan rezeki kepada sesama.'},
+
+  /* ─── ASMAUL HUSNA (16 soal) ─── */
+  {em:'🌟', topik:'asma', diff:'mudah',
+   q:'Al-Muhaimin artinya ...',
+   opts:['Maha Suci','Maha Perkasa','Maha Memelihara','Maha Raja'], ans:2,
+   p:'Al-Muhaimin artinya Allah Maha Memelihara. Allah selalu memelihara dan mengawasi semua makhluk-Nya.'},
+
+  {em:'👑', topik:'asma', diff:'mudah',
+   q:'Al-Malik artinya ...',
+   opts:['Maha Pengasih','Maha Raja/Penguasa','Maha Melihat','Maha Memelihara'], ans:1,
+   p:'Al-Malik artinya Allah Maha Raja atau Maha Berkuasa atas seluruh alam semesta.'},
+
+  {em:'✨', topik:'asma', diff:'mudah',
+   q:'Al-Quddus artinya ...',
+   opts:['Maha Perkasa','Maha Suci','Maha Pengasih','Maha Pemaaf'], ans:1,
+   p:'Al-Quddus artinya Allah Maha Suci. Allah bersih dari segala kekurangan dan keburukan.'},
+
+  {em:'🛡️', topik:'asma', diff:'mudah',
+   q:'Al-Mu\'min artinya ...',
+   opts:['Maha Melihat','Maha Pemberi Keselamatan','Maha Pemberi Keamanan','Maha Perkasa'], ans:2,
+   p:'Al-Mu\'min artinya Allah Maha Pemberi Keamanan. Keamanan sejati hanya datang dari Allah Swt.'},
+
+  {em:'☮️', topik:'asma', diff:'mudah',
+   q:'As-Salam artinya ...',
+   opts:['Maha Perkasa','Maha Suci','Maha Pemberi Keamanan','Maha Pemberi Keselamatan'], ans:3,
+   p:'As-Salam artinya Allah Maha Pemberi Keselamatan. Allah menyelamatkan hamba-Nya dari segala bahaya.'},
+
+  {em:'💪', topik:'asma', diff:'mudah',
+   q:'Al-Aziz artinya ...',
+   opts:['Maha Perkasa','Maha Raja','Maha Suci','Maha Pengasih'], ans:0,
+   p:'Al-Aziz artinya Allah Maha Perkasa. Tidak ada yang mampu mengalahkan kekuatan Allah Swt.'},
+
+  {em:'❤️', topik:'asma', diff:'mudah',
+   q:'Ar-Rahman artinya ...',
+   opts:['Maha Penyayang','Maha Pengasih','Maha Melihat','Maha Pemaaf'], ans:1,
+   p:'Ar-Rahman artinya Allah Maha Pengasih. Kasih sayang Allah mencakup seluruh makhluk di dunia.'},
+
+  {em:'💕', topik:'asma', diff:'mudah',
+   q:'Ar-Rahim artinya ...',
+   opts:['Maha Pengasih','Maha Perkasa','Maha Penyayang','Maha Melihat'], ans:2,
+   p:'Ar-Rahim artinya Allah Maha Penyayang. Kasih sayang Allah di akhirat hanya untuk orang beriman.'},
+
+  {em:'👁️', topik:'asma', diff:'sedang',
+   q:'Al-Basir artinya ...',
+   opts:['Maha Mendengar','Maha Melihat','Maha Mengetahui','Maha Bijaksana'], ans:1,
+   p:'Al-Basir artinya Allah Maha Melihat. Allah melihat semua yang kita lakukan, baik yang tampak maupun tersembunyi.'},
+
+  {em:'🙏', topik:'asma', diff:'sedang',
+   q:'Al-\'Afuww artinya ...',
+   opts:['Maha Mengetahui','Maha Perkasa','Maha Pemaaf','Maha Suci'], ans:2,
+   p:'Al-\'Afuww artinya Allah Maha Pemaaf. Allah senantiasa memaafkan dosa hamba-Nya yang bertobat dengan sungguh-sungguh.'},
+
+  {em:'🛡️', topik:'asma', diff:'sedang',
+   q:'Keamanan dapat kita peroleh dari Allah Swt. karena Dia mempunyai sifat ...',
+   opts:['Al-Muhaimin','As-Salam','Al-Mu\'min','Al-Malik'], ans:2,
+   p:'Al-Mu\'min berarti Maha Pemberi Keamanan. Keamanan sejati hanya datang dari Allah yang Maha Memberi Keamanan.'},
+
+  {em:'💞', topik:'asma', diff:'sedang',
+   q:'Saling peduli terhadap teman. Sikap ini meneladan sifat Allah ...',
+   opts:['Al-\'Afuww','Ar-Rahman','Al-Basir','Al-Quddus'], ans:1,
+   p:'Ar-Rahman berarti Maha Pengasih. Saling peduli dan mengasihi sesama adalah wujud meneladani sifat ar-Rahman Allah Swt.'},
+
+  {em:'🌟', topik:'asma', diff:'sedang',
+   q:'Asma Allah yang berarti Maha Memelihara adalah ...',
+   opts:['Al-Quddus','Al-Muhaimin','Al-Mu\'min','As-Salam'], ans:1,
+   p:'Al-Muhaimin artinya Maha Memelihara. Allah senantiasa memelihara dan menjaga semua makhluk-Nya.'},
+
+  {em:'👑', topik:'asma', diff:'sedang',
+   q:'Asma Allah yang berarti Maha Berkuasa adalah ...',
+   opts:['Al-Quddus','Al-Muhaimin','Al-Malik','Al-Aziz'], ans:2,
+   p:'Al-Malik artinya Maha Raja atau Maha Berkuasa. Allah berkuasa atas segala sesuatu di alam semesta.'},
+
+  {em:'😊', topik:'asma', diff:'sedang',
+   q:'Setiap menghadapi musibah, kita berhusnuzan kepada Allah dan mengambil sisi positif dari kejadian. Ini adalah wujud keteladanan asma ...',
+   opts:['Al-Aziz','Al-Malik','Al-Quddus','Ar-Rahman'], ans:0,
+   p:'Al-Aziz berarti Maha Perkasa. Menghadapi musibah dengan sikap positif menunjukkan keyakinan akan kekuasaan dan kekuatan Allah.'},
+
+  {em:'❤️', topik:'asma', diff:'sedang',
+   q:'Asma Allah yang Maha Mengasihi seluruh makhluk-Nya di dunia adalah ...',
+   opts:['Ar-Rahim','Ar-Rahman','Al-Malik','Al-Aziz'], ans:1,
+   p:'Ar-Rahman berarti Maha Pengasih untuk seluruh makhluk di dunia. Ar-Rahim adalah kasih sayang khusus untuk orang beriman.'},
+
+  /* ─── AKHLAK (16 soal) ─── */
+  {em:'🙇', topik:'akhlak', diff:'mudah',
+   q:'Orang yang rendah hati mudah menerima ...',
+   opts:['Ejekan','Nasihat','Kelebihan orang lain','Harta yang banyak'], ans:1,
+   p:'Orang yang rendah hati memiliki hati yang terbuka dan mudah menerima nasihat dari siapapun.'},
+
+  {em:'🏆', topik:'akhlak', diff:'sedang',
+   q:'Fulan meraih juara pertama di kelasnya, namun ia tidak berharap pujian dan berbagi ilmu dengan temannya. Pernyataan yang tepat adalah ...',
+   opts:['Contoh sikap jujur','Contoh sikap tawaduk','Contoh sikap takabur','Contoh sikap kikir'], ans:1,
+   p:'Tidak berharap pujian meski berprestasi dan mau berbagi ilmu adalah contoh sikap tawaduk (rendah hati).'},
+
+  {em:'🧎', topik:'akhlak', diff:'mudah',
+   q:'Khusyuk dalam beribadah dan tidak suka pamer adalah sifat ...',
+   opts:['Sombong','Takabur','Tawaduk','Riya'], ans:2,
+   p:'Tawaduk adalah sikap rendah hati, termasuk khusyuk beribadah dan tidak suka memamerkan ibadah kepada orang lain.'},
+
+  {em:'🔄', topik:'akhlak', diff:'mudah',
+   q:'Lawan kata dari sombong (takabur) adalah ...',
+   opts:['Jujur','Tawaduk','Amanah','Sabar'], ans:1,
+   p:'Lawan dari sombong atau takabur adalah tawaduk, yaitu sikap rendah hati dan tidak meremehkan orang lain.'},
+
+  {em:'🤝', topik:'akhlak', diff:'mudah',
+   q:'Fulanah kesulitan membersihkan kaca. Datanglah temannya untuk membantu. Sikap yang tepat bagi Fulanah adalah ...',
+   opts:['Menyalahkannya','Meminta maaf','Berterima kasih','Diam saja'], ans:2,
+   p:'Ketika seseorang membantu kita, sikap yang baik adalah berterima kasih sebagai wujud syukur dan menghargai bantuan orang lain.'},
+
+  {em:'👗', topik:'akhlak', diff:'sedang',
+   q:'Berpakaian apa adanya sesuai kemampuan adalah contoh penerapan sikap ...',
+   opts:['Tawaduk','Sombong','Jujur','Riya'], ans:2,
+   p:'Berpakaian sesuai kemampuan tanpa berlebihan adalah wujud kejujuran dan kesederhanaan dalam kehidupan.'},
+
+  {em:'🙅', topik:'akhlak', diff:'sedang',
+   q:'Menyebarkan kesalahan orang lain kepada banyak orang adalah sikap yang ...',
+   opts:['Jujur','Amanah','Tidak sesuai dengan sikap jujur','Terpuji'], ans:2,
+   p:'Menyebarkan kesalahan orang lain bukan termasuk sikap jujur yang baik, melainkan sikap yang dapat menyakiti orang lain.'},
+
+  {em:'🤔', topik:'akhlak', diff:'sedang',
+   q:'Husnuzan kepada Allah artinya ...',
+   opts:['Berprasangka buruk','Tidak percaya kepada Allah','Berprasangka baik','Selalu mengeluh'], ans:2,
+   p:'Husnuzan artinya berprasangka baik. Berhusnuzan kepada Allah berarti selalu meyakini bahwa setiap takdir Allah mengandung kebaikan.'},
+
+  {em:'🛡️', topik:'akhlak', diff:'mudah',
+   q:'Memohon perlindungan kepada selain Allah Swt. dapat mengarahkan manusia kepada ...',
+   opts:['Kesesatan','Keraguan','Kebaikan','Keimanan'], ans:0,
+   p:'Memohon perlindungan hanya boleh kepada Allah Swt. Meminta kepada selain Allah termasuk syirik yang menyesatkan.'},
+
+  {em:'💰', topik:'akhlak', diff:'mudah',
+   q:'Kelak di hari kiamat yang bermanfaat bagi manusia adalah ...',
+   opts:['Harta yang berlimpah','Keturunan yang banyak','Amal saleh','Jabatan yang tinggi'], ans:2,
+   p:'Di hari kiamat, hanya amal saleh yang bermanfaat. Harta, jabatan, dan keturunan tidak dapat menolong jika tidak disertai amal saleh.'},
+
+  {em:'🌟', topik:'akhlak', diff:'mudah',
+   q:'Berlomba-lomba dalam kebaikan disebut ...',
+   opts:['Tawaduk','Fastabiqul khairat','Husnuzan','Syukur'], ans:1,
+   p:'Fastabiqul khairat artinya berlomba-lomba dalam kebaikan. Ini adalah anjuran Islam agar umatnya selalu bersemangat berbuat baik.'},
+
+  {em:'🙏', topik:'akhlak', diff:'sedang',
+   q:'Mengamalkan rukun iman dalam kehidupan sehari-hari dilakukan dengan cara ...',
+   opts:['Suka bertengkar','Beramal saleh dan rajin salat','Bermain sepanjang hari','Bermalas-malasan'], ans:1,
+   p:'Mengamalkan rukun iman diwujudkan melalui perbuatan nyata seperti beramal saleh, rajin salat, dan berperilaku baik.'},
+
+  {em:'🏠', topik:'akhlak', diff:'sedang',
+   q:'Hakim dibuatkan kamar baru oleh orang tuanya. Sikap yang tepat dilakukan Hakim adalah ...',
+   opts:['Merasa tidak puas karena tidak sesuai keinginan','Mengucapkan terima kasih dengan tulus','Meminta kamar yang lebih besar','Diam saja tidak berterima kasih'], ans:1,
+   p:'Sikap yang tepat adalah mengucapkan terima kasih. Bersyukur atas pemberian orang tua adalah akhlak mulia.'},
+
+  {em:'😇', topik:'akhlak', diff:'mudah',
+   q:'Amal saleh artinya perbuatan yang ...',
+   opts:['Buruk dan merugikan','Baik dan berguna','Hanya untuk diri sendiri','Mengandung riya'], ans:1,
+   p:'Amal saleh adalah perbuatan baik yang berguna bagi diri sendiri dan orang lain, dilakukan karena Allah Swt.'},
+
+  {em:'🙌', topik:'akhlak', diff:'sedang',
+   q:'Menghadapi musibah dengan sabar dan selalu berprasangka baik kepada Allah adalah contoh sikap ...',
+   opts:['Sombong','Takabur','Husnuzan kepada Allah','Kufur nikmat'], ans:2,
+   p:'Menghadapi musibah dengan sabar dan prasangka baik adalah wujud husnuzan kepada Allah, yaitu meyakini ada hikmah di balik setiap ujian.'},
+
+  {em:'🎓', topik:'akhlak', diff:'sedang',
+   ctx:'Adi selalu berkata benar kepada orang tuanya. Ia tidak pernah berbohong meski untuk menghindari masalah.',
+   q:'Perilaku Adi di atas adalah contoh sikap ...',
+   opts:['Tawaduk','Sombong','Jujur','Riya'], ans:2,
+   p:'Berkata benar dan tidak berbohong adalah ciri utama sikap jujur (shidiq) yang sangat dianjurkan dalam Islam.'},
+];
+
+/* ══════════════════════════════════════════════
+   MATERI
+══════════════════════════════════════════════ */
+const MATERI = [
+  {
+    icon:'🕌', judul:'Rukun Iman',
+    isi:`<p>Rukun iman ada <strong>6</strong>, yaitu:</p>
+    <table class="tabel">
+      <tr><th>#</th><th>Rukun Iman</th></tr>
+      <tr><td>1</td><td>Iman kepada Allah Swt.</td></tr>
+      <tr><td>2</td><td>Iman kepada Malaikat Allah</td></tr>
+      <tr><td>3</td><td>Iman kepada Kitab-kitab Allah</td></tr>
+      <tr><td>4</td><td>Iman kepada Rasul Allah</td></tr>
+      <tr><td>5</td><td>Iman kepada Hari Akhir (Kiamat)</td></tr>
+      <tr><td>6</td><td>Iman kepada Qada dan Qadar</td></tr>
+    </table>
+    <p style="margin-top:8px">Meyakini alam dunia akan berakhir dan berganti alam akhirat adalah wujud <strong>rukun iman kelima</strong>. Yang bermanfaat di hari kiamat hanya <strong>amal saleh</strong>.</p>
+    <div style="margin-top:8px"><span class="materi-tag tag-g">6 Rukun Iman</span><span class="materi-tag tag-a">Amal Saleh</span><span class="materi-tag tag-t">Hari Akhir</span></div>`
+  },
+  {
+    icon:'👼', judul:'Malaikat Allah',
+    isi:`<p>Malaikat yang wajib diketahui ada <strong>10</strong>:</p>
+    <table class="tabel">
+      <tr><th>Malaikat</th><th>Tugas</th></tr>
+      <tr><td>Jibril</td><td>Menyampaikan wahyu</td></tr>
+      <tr><td>Mikail</td><td>Membagi rezeki</td></tr>
+      <tr><td>Israfil</td><td>Meniup sangkakala</td></tr>
+      <tr><td>Izrail</td><td>Mencabut nyawa</td></tr>
+      <tr><td>Raqib</td><td>Mencatat amal baik</td></tr>
+      <tr><td>Atid</td><td>Mencatat amal buruk</td></tr>
+      <tr><td>Munkar & Nakir</td><td>Menanya di alam kubur</td></tr>
+      <tr><td>Ridwan</td><td>Menjaga surga</td></tr>
+      <tr><td>Malik</td><td>Menjaga neraka</td></tr>
+    </table>
+    <div style="margin-top:8px"><span class="materi-tag tag-g">10 Malaikat</span><span class="materi-tag tag-a">Taat kepada Allah</span></div>`
+  },
+  {
+    icon:'🌟', judul:'Asmaul Husna',
+    isi:`<p>Asmaul Husna adalah nama-nama baik Allah. Berikut yang wajib dipelajari:</p>
+    <table class="tabel">
+      <tr><th>Asma</th><th>Arti</th></tr>
+      <tr><td>Al-Muhaimin</td><td>Maha Memelihara</td></tr>
+      <tr><td>Al-Malik</td><td>Maha Raja/Penguasa</td></tr>
+      <tr><td>Al-Quddus</td><td>Maha Suci</td></tr>
+      <tr><td>Al-Mu'min</td><td>Maha Pemberi Keamanan</td></tr>
+      <tr><td>As-Salam</td><td>Maha Pemberi Keselamatan</td></tr>
+      <tr><td>Al-Aziz</td><td>Maha Perkasa</td></tr>
+      <tr><td>Ar-Rahman</td><td>Maha Pengasih</td></tr>
+      <tr><td>Ar-Rahim</td><td>Maha Penyayang</td></tr>
+      <tr><td>Al-Basir</td><td>Maha Melihat</td></tr>
+      <tr><td>Al-'Afuww</td><td>Maha Pemaaf</td></tr>
+    </table>
+    <div style="margin-top:8px"><span class="materi-tag tag-g">99 Asmaul Husna</span><span class="materi-tag tag-a">Nama-nama Indah Allah</span></div>`
+  },
+  {
+    icon:'💎', judul:'Akhlak Terpuji',
+    isi:`<p><strong>Tawaduk</strong> (rendah hati): khusyuk beribadah, tidak suka pamer, mudah menerima nasihat, tidak berharap pujian saat berprestasi.</p>
+    <p><strong>Jujur</strong>: berkata benar, berpakaian sesuai kemampuan, tidak menyebarkan kesalahan orang lain.</p>
+    <p><strong>Husnuzan</strong>: berprasangka baik kepada Allah dan sesama. Saat musibah → ambil sisi positif → ini wujud husnuzan.</p>
+    <p><strong>Syukur</strong>: mengucapkan terima kasih saat dibantu, bersyukur atas nikmat Allah.</p>
+    <p><strong>Fastabiqul Khairat</strong>: berlomba-lomba dalam kebaikan.</p>
+    <div style="margin-top:8px">
+      <span class="materi-tag tag-g">Tawaduk</span>
+      <span class="materi-tag tag-g">Jujur</span>
+      <span class="materi-tag tag-a">Husnuzan</span>
+      <span class="materi-tag tag-a">Syukur</span>
+      <span class="materi-tag tag-t">Fastabiqul Khairat</span>
+    </div>`
+  }
+];
+
+/* ══════════════════════════════════════════════
+   GAME ENGINE
+══════════════════════════════════════════════ */
+let activeTopik = 'semua';
+let queue = [], cur = 0, benar = 0, salah = 0, streak = 0;
+let answered = false;
+
+function shuffle(a) {
+  for (let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];}
+  return a;
+}
+function buildPool() {
+  queue = shuffle(activeTopik==='semua' ? [...SOAL] : SOAL.filter(s=>s.topik===activeTopik));
+}
+function setTopik(t, el) {
+  activeTopik = t;
+  document.querySelectorAll('.topik-btn').forEach(b=>b.classList.remove('active'));
+  el.classList.add('active');
+  resetGame();
+}
+function resetGame() {
+  benar=0; salah=0; streak=0; cur=0;
+  buildPool(); updateScore(); renderSoal();
+}
+function updateScore() {
+  document.getElementById('sc-benar').textContent = benar;
+  document.getElementById('sc-salah').textContent = salah;
+  document.getElementById('sc-streak').textContent = streak+'🔥';
+  document.getElementById('sc-no').textContent = (cur+1)+'/'+queue.length;
+}
+function updateProg() {
+  const p = Math.round(((cur+1)/queue.length)*100);
+  document.getElementById('progressBar').style.width = p+'%';
+  document.getElementById('prog-label').textContent = 'Soal '+(cur+1)+' dari '+queue.length;
+  document.getElementById('prog-pct').textContent = p+'%';
+}
+function renderSoal() {
+  const area = document.getElementById('soal-area');
+  if (cur >= queue.length) { renderResults(); return; }
+  answered = false;
+  updateScore(); updateProg();
+  const s = queue[cur];
+  const L = ['A','B','C','D'];
+  const tLabel = {iman:'🕌 Rukun Iman', malaikat:'👼 Malaikat', asma:'🌟 Asmaul Husna', akhlak:'💎 Akhlak'};
+  const dc = s.diff==='mudah'?'diff-mudah':s.diff==='sedang'?'diff-sedang':'diff-sulit';
+  const dl = s.diff==='mudah'?'⭐ Mudah':s.diff==='sedang'?'⭐⭐ Sedang':'⭐⭐⭐ Sulit';
+  const ctx = s.ctx ? `<div class="q-ctx">${s.ctx}</div>` : '';
+  area.innerHTML = `
+    <div class="q-card">
+      <div class="q-meta">
+        <span class="q-badge">Soal ${cur+1}</span>
+        <span class="q-topik">${tLabel[s.topik]||s.topik}</span>
+        <span class="q-diff ${dc}">${dl}</span>
+      </div>
+      <span class="q-emoji">${s.em}</span>
+      ${ctx}
+      <p class="q-text">${s.q}</p>
+      <div class="options">${s.opts.map((o,i)=>`
+        <button class="option" onclick="pilih(${i})">
+          <span class="opt-letter">${L[i]}</span><span>${o}</span>
+        </button>`).join('')}
+      </div>
+      <div class="feedback" id="feedback"></div>
+      <div class="pembahasan" id="pembahasan"><strong>📖 Pembahasan:</strong> ${s.p}</div>
+      <div class="nav-row" id="nav-row" style="display:none">
+        <button class="btn gold" onclick="resetGame()">🔄 Ulang</button>
+        <button class="btn primary" onclick="nextSoal()">Lanjut →</button>
+      </div>
+    </div>`;
+}
+function pilih(idx) {
+  if (answered) return;
+  answered = true;
+  const s = queue[cur];
+  const opts = document.querySelectorAll('.option');
+  opts.forEach(o=>o.classList.add('disabled'));
+  const fb = document.getElementById('feedback');
+  const pb = document.getElementById('pembahasan');
+  if (idx===s.ans) {
+    opts[idx].classList.add('correct');
+    fb.textContent='✅ Benar! MasyaAllah!';
+    fb.className='feedback correct show';
+    benar++; streak++;
+    if (streak>=3) showToast('🔥 Streak '+streak+'! SubhanAllah!');
+  } else {
+    opts[idx].classList.add('wrong');
+    opts[s.ans].classList.add('correct');
+    fb.textContent='❌ Kurang tepat. Jawaban yang benar adalah '+['A','B','C','D'][s.ans]+'.';
+    fb.className='feedback wrong show';
+    salah++; streak=0;
+  }
+  pb.classList.add('show');
+  document.getElementById('nav-row').style.display='flex';
+  updateScore();
+}
+function nextSoal() { cur++; renderSoal(); }
+function renderResults() {
+  const total=queue.length, pct=Math.round((benar/total)*100);
+  let grade,icon;
+  if (pct>=90){grade='MasyaAllah! Luar Biasa! 🌟';icon='🥇';}
+  else if (pct>=80){grade='Sangat Baik! Terus Semangat!';icon='🥈';}
+  else if (pct>=70){grade='Bagus! Pertahankan! 👍';icon='🌙';}
+  else if (pct>=60){grade='Cukup Baik, Tingkatkan! 💪';icon='⭐';}
+  else{grade='Ayo Belajar Lagi! 📖';icon='📚';}
+  document.getElementById('soal-area').innerHTML=`
+    <div class="results">
+      <span class="result-icon">${icon}</span>
+      <div class="result-score">${pct}%</div>
+      <div class="result-grade">${grade}</div>
+      <p class="result-desc">Kamu menjawab ${benar} benar dari ${total} soal</p>
+      <div class="result-breakdown">
+        <div class="rb-item"><div class="rb-val" style="color:var(--correct)">${benar}</div><div class="sb-lbl">Benar</div></div>
+        <div class="rb-item"><div class="rb-val" style="color:var(--wrong)">${salah}</div><div class="sb-lbl">Salah</div></div>
+        <div class="rb-item"><div class="rb-val" style="color:var(--teal)">${total}</div><div class="sb-lbl">Total</div></div>
+      </div>
+      <div class="nav-row" style="justify-content:center">
+        <button class="btn primary" onclick="resetGame()">🔄 Main Lagi</button>
+        <button class="btn gold" onclick="switchTab('materi')">📖 Baca Materi</button>
+      </div>
+    </div>`;
+}
+function switchTab(t) {
+  document.querySelectorAll('.tab').forEach(b=>b.classList.remove('active'));
+  document.querySelectorAll('[id^="tab-"]').forEach(b=>b.style.display='none');
+  document.getElementById('tab-'+t).style.display='block';
+  document.querySelectorAll('.tab')[t==='latihan'?0:1].classList.add('active');
+  if (t==='materi') renderMateri();
+}
+function renderMateri() {
+  document.getElementById('materi-area').innerHTML = MATERI.map(m=>`
+    <div class="materi-card">
+      <h3>${m.icon} ${m.judul}</h3>
+      ${m.isi}
+    </div>`).join('');
+}
+function showToast(msg) {
+  const t=document.getElementById('toast');
+  t.textContent=msg; t.classList.add('show');
+  setTimeout(()=>t.classList.remove('show'),2200);
+}
+buildPool(); renderSoal();
+</script>
+</body>
+</html>
